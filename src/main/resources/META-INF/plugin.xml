@@ -1,19 +1,23 @@
 <idea-plugin>
-    <id>com.github.anoukvanvugt.fluffybroccoli</id>
-    <name>fluffy-broccoli</name>
-    <vendor>anoukvanvugt</vendor>
+    <id>nl.avisi.anowalke.fluffybroccoli</id>
+    <name>Fluffy Broccoli</name>
+    <vendor email="info@avisi.nl" url="https://www.avisi.nl/">Avisi</vendor>
+
+    <description><![CDATA[
+    Plugin for recognizing antipatterns in code.
+    ]]></description>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.anoukvanvugt.fluffybroccoli.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.anoukvanvugt.fluffybroccoli.services.MyProjectService"/>
+        <toolWindow id="Fluffy Broccoli" anchor="right" factoryClass="nl.avisi.anowalke.toolWindow.FluffyToolWindowFactory" icon="AllIcons.Actions.Search"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.anoukvanvugt.fluffybroccoli.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+    <projectListeners>
+        <listener class="nl.avisi.anowalke.toolWindow.FluffyListener"
+                  topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener" />
+    </projectListeners>
+
 </idea-plugin>
