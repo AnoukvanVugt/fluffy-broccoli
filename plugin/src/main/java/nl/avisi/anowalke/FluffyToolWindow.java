@@ -10,10 +10,10 @@ public class FluffyToolWindow {
 
     private JPanel content;
     private JLabel currentClass;
-    private JButton scanProject;
+    private JButton scan;
 
     public FluffyToolWindow(FluffyListener listener) {
-        scanProject.addActionListener(e -> listener.scanProject(currentClass));
+        scan.addActionListener(e -> listener.scan());
     }
 
     public JPanel getContent() {
