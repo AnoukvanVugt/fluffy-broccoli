@@ -14,7 +14,7 @@ import nl.avisi.anowalke.service.PsiService
 import javax.swing.JLabel
 
 
-class FluffyListener(val project: Project): ToolWindowManagerListener {
+class FluffyListener(val project: Project) : ToolWindowManagerListener {
 
     private val psiService = PsiService(this)
     private val log = Logger.getInstance(this::class.java.name)
@@ -32,12 +32,12 @@ class FluffyListener(val project: Project): ToolWindowManagerListener {
 
     fun showClassName(currentClass: JLabel) {
         val fileChooserDescriptor = FileChooserDescriptor(
-                chooseFiles,
-                chooseFolders,
-                chooseJars,
-                chooseJarsAsFiles,
-                chooseJarContents,
-                chooseMultiple
+            chooseFiles,
+            chooseFolders,
+            chooseJars,
+            chooseJarsAsFiles,
+            chooseJarContents,
+            chooseMultiple
         )
         currentClass.text = FileChooser.chooseFiles(fileChooserDescriptor, project, null).first().name
     }
@@ -48,7 +48,7 @@ class FluffyListener(val project: Project): ToolWindowManagerListener {
 
     private fun getJavaFiles(file: VirtualFile): List<String>? {
         // Filter out hidden files
-        if(!file.isDirectory && !file.name.startsWith(".")) {
+        if (!file.isDirectory && !file.name.startsWith(".")) {
             PsiManager.getInstance(project).findFile(file)?.let { it -> log.warn(it.name) } ?: log.warn("no file found")
             val expressions = PsiManager.getInstance(project).findFile(file)?.let { psiFile -> psiService.extract(psiFile) }
 //            log.warn("And now pretty")
@@ -61,25 +61,22 @@ class FluffyListener(val project: Project): ToolWindowManagerListener {
     }
 
     private fun getFilesAsIdentifier(file: VirtualFile): List<Identifier>? {
-        if(file.isDirectory) {
+        if (file.isDirectory) {
             // Zoek naar files in de java map ipv files met filetype java, omdat hij sommige filetypes door elkaar haalt
             if (file.name == "java") {
-                return getJavaFiles(file).let { expressionList ->
-                    expressionList?.map { expression ->
-                        Identifier(file.name, expression)
-                    }
+                return getJavaFiles(file)?.map { expression ->
+                    Identifier(file.name, expression)
                 }
-            } else {
-                file.children.forEach { getFilesAsIdentifier(it) }
             }
+        } else {
+            file.children.forEach { getFilesAsIdentifier(it) }
         }
         return null
     }
 
     private fun scanProject() {
-        var identifiers: List<Identifier>? = null
-        ProjectRootManager.getInstance(project).contentSourceRoots.forEach {
-            identifiers = getFilesAsIdentifier(it)
+        val identifiers = ProjectRootManager.getInstance(project).contentSourceRoots.flatMap {
+            getFilesAsIdentifier(it).orEmpty()
         }
     }
 

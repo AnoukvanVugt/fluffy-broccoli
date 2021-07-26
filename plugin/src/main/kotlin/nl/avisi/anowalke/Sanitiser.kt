@@ -2,7 +2,9 @@ package nl.avisi.anowalke
 
 object Sanitiser {
 
-    fun List<String>.sanatise(): List<String> =
+    var camelCaseTitleCaseRegex = "(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])".toRegex()
+
+    fun List<String>.sanitise(): List<String> =
         // Stap 1: Remove correct calls
 
         // Kan hier niet want dit gebeurt recursief?
@@ -17,7 +19,7 @@ object Sanitiser {
         // save for api.
 
     private fun List<String>.split(): List<String> =
-        this.flatMap { it.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])".toRegex()) }
+        this.flatMap { it.split(camelCaseTitleCaseRegex) }
 
     private fun List<String>.toLowercase(): List<String> =
         this.map { it.toLowerCase() }
