@@ -1,2 +1,6 @@
 rootProject.name = "fluffy-broccoli"
-include("api")
+
+include(
+    "api",
+    "plugin"
+)

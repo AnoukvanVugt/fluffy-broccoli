@@ -1,0 +1,19 @@
+version: '2.1'
+services:
+
+  postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "fluffy_owner"
+      POSTGRES_DB: "fluffy-broccoli"
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./api/src/main/resources:/docker-entrypoint-initdb.d/
+
+  api:
+    build: ./api
+    ports:
+      - "8080:8080"
