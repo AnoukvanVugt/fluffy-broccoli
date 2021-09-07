@@ -3,12 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 fun properties(key: String) = project.findProperty(key).toString()
 
 plugins {
-    val kotlinVersion = "1.5.10"
+    val kotlinVersion = "1.5.21"
     // Spring
-    id("io.spring.dependency-management") version "1.0.9.RELEASE"
+    id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.springframework.boot") version "2.3.0.RELEASE" apply false
     // Docker
-    id("com.palantir.docker") version "0.25.0" apply false
+    id("com.palantir.docker") version "0.28.0" apply false
     // Java support
     id("java")
     // Kotlin support
@@ -40,10 +40,10 @@ subprojects {
 
     dependencyManagement {
         dependencies {
-            dependency("io.github.microutils:kotlin-logging:1.7.8")
+            dependency("io.github.microutils:kotlin-logging-jvm:2.0.11")
             dependency("com.squareup.okhttp3:okhttp:4.9.1")
-            dependency("com.google.code.gson:gson:2.8.6")
-            dependency("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0-rc1")
+            dependency("com.google.code.gson:gson:2.8.8")
+            dependency("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.5")
             dependency("org.apache.lucene:lucene-analyzers-common:6.4.1")
         }
     }

@@ -17,3 +17,7 @@ services:
     build: ./api
     ports:
       - "8080:8080"
+    environment:
+       MICROSOFT_KEY: "f2a9a9f29d7d4e878669cdfed04f99ce"
+       MICROSOFT_REGION: "westeurope"
+       MICROSOFT_URL: "https://api-eur.cognitive.microsofttranslator.com/translate?api-version=3.0&from=nl&to=en"

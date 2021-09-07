@@ -13,5 +13,5 @@ class PsiService(fluffyListener: FluffyListener) {
     fun extract(psiFile: PsiFile): List<String> =
         psiFile.collectDescendantsOfType<PsiNameIdentifierOwner>()
             .mapNotNull { it.name }
-            .also { log.warn("Initiate extract function.") }
+            .also { log.info("Initiate extract function.") }
 }

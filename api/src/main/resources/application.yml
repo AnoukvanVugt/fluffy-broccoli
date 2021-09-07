@@ -1,0 +1,5 @@
+translation:
+  service: dummy #used to switch between translation services
+  api_key: ${MICROSOFT_KEY:microsoft-subscription-key}
+  region: ${MICROSOFT_REGION:microsoft-subscription-region}
+  url: ${MICROSOFT_URL:microsoft-subscription-url}
