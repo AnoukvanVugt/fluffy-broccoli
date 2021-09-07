@@ -15,7 +15,7 @@ class Stemmer {
     private val log = Logger.getInstance(this::class.java.name)
 
     fun stem(term: String): String {
-        log.warn("Initiate stem function.")
+        log.info("Initiate stem function.")
         val analyzer: Analyzer = StandardAnalyzer()
         var result: TokenStream = analyzer.tokenStream(null, term)
         result = PorterStemFilter(result)
@@ -28,7 +28,7 @@ class Stemmer {
                 tokens.add(resultAttr.toString())
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            log.error(e.message)
         }
         return tokens.toString()
     }

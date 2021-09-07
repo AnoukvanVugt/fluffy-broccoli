@@ -15,7 +15,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-web-services")
     // Logging
-    implementation("io.github.microutils:kotlin-logging")
+    implementation("io.github.microutils:kotlin-logging-jvm")
     implementation("com.google.code.gson:gson")
     // Jackson
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
