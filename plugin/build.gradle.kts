@@ -16,8 +16,17 @@ plugins {
 }
 
 dependencies{
+
+    implementation(project(":shared"))
+
     implementation("com.squareup.okhttp3:okhttp")
     implementation("org.apache.lucene:lucene-analyzers-common")
+
+    //test
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("org.mockito:mockito-core")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+
 }
 
 // Configure gradle-intellij-plugin plugin.
