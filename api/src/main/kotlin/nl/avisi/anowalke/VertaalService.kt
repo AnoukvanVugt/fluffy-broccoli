@@ -11,9 +11,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.web.client.RestTemplate
 
-interface TranslateConnector {
-    val api_key: String?
-    val api_url: String?
+interface VertaalService {
 
     val restTemplate: RestTemplate
         get() = RestTemplate().configureJsonMappers()

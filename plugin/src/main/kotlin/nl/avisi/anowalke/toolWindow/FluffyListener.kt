@@ -82,18 +82,18 @@ class FluffyListener(val project: Project) : ToolWindowManagerListener {
     fun getFilesAsIdentifier(file: VirtualFile): List<Identifier>? {
         log.info("Initiate getFilesAsIdentifier function.")
         // Zoek naar files in de java map ipv files met filetype java, omdat hij sommige filetypes door elkaar haalt
-        if (file.isDirectory && file.name == "java") {
+        return if (file.isDirectory && file.name == "java") {
             log.info("Current file: '${file.name}' is a java directory.")
             val identifiers = getJavaFiles(file)
             log.info("getJavaFiles function retrieved ${identifiers?.size} identifiers.")
-            return identifiers
+            identifiers
         } else if (file.isDirectory && file.name != "java") {
             log.info("Current file: ${file.name} is not a java directory. Check Children for a directory named 'java'.")
-            return file.children.flatMap { getFilesAsIdentifier(it).orEmpty() }
+            file.children.flatMap { getFilesAsIdentifier(it).orEmpty() }
         } else {
             log.info("Current file: ${file.name} is not a directory. Ignore file.")
+            null
         }
-        return null
     }
 
     fun scanProject(): List<Identifier> {
@@ -112,15 +112,7 @@ class FluffyListener(val project: Project) : ToolWindowManagerListener {
         // en de expressie daarna een hit oplevert negeer die dan.
         // vereiste 2: Iets met initialisatie, voor nu niet meenemen.
 
-        val testIdentifiers = listOf(
-            Identifier("dier", "koe"),
-            Identifier("dier", "pad"),
-            Identifier("wegdek", "pad"),
-            Identifier("meubel", "bank"),
-            Identifier("instantie", "bank"),
-            Identifier("meubel", "pad"),
-        )
-        val filteredIdentifiers = testIdentifiers
+        val filteredIdentifiers = identifiers
             .groupBy { it.expression }
             .filter {
                 it.value.size > 1

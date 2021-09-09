@@ -2,5 +2,6 @@ rootProject.name = "fluffy-broccoli"
 
 include(
     "api",
-    "plugin"
+    "plugin",
+    "shared"
 )

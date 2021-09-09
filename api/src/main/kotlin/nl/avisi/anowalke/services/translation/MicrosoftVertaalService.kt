@@ -1,21 +1,21 @@
 package nl.avisi.anowalke.services.translation
 
 import com.google.gson.reflect.TypeToken
-import nl.avisi.anowalke.TranslateConnector
+import nl.avisi.anowalke.VertaalService
 import nl.avisi.anowalke.dto.ExpressionsDto
 import nl.avisi.anowalke.dto.Translations
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.stereotype.Service
 import org.springframework.web.client.HttpStatusCodeException
 
 @Service
 @ConditionalOnProperty(name = ["translation.service"], havingValue = "microsoft")
-class MicrosoftVertaalService: TranslateConnector {
+class MicrosoftVertaalService: VertaalService {
 
-    override val api_key = "microsoft-subscription-key"
-    override val api_url = "microsoft-subscription-url"
-
-    private val subscriptionRegion = "microsoft-subscription-region"
+    @Value("\${translation.microsoft.api_key}") lateinit var api_key: String
+    @Value("\${translation.microsoft.url}") lateinit var api_url: String
+    @Value("\${translation.microsoft.region}") lateinit var subscriptionRegion: String
 
     override fun translate(expressions: ExpressionsDto): List<String> {
         try {

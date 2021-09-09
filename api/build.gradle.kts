@@ -9,6 +9,8 @@ plugins {
 }
 
 dependencies {
+
+    implementation(project(":shared"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
 
     // Spring boot starter kit, update version by updating org.springframework.boot plugin version

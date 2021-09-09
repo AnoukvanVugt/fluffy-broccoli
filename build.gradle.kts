@@ -45,6 +45,11 @@ subprojects {
             dependency("com.google.code.gson:gson:2.8.8")
             dependency("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.5")
             dependency("org.apache.lucene:lucene-analyzers-common:6.4.1")
+
+            //test
+            dependency("org.junit.jupiter:junit-jupiter-api:5.3.1")
+            dependency("org.junit.jupiter:junit-jupiter-engine:5.3.1")
+            dependency("org.mockito:mockito-core:3.12.4")
         }
     }
 }

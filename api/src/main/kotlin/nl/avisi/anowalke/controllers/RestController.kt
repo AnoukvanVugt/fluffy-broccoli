@@ -5,15 +5,14 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import mu.KotlinLogging
-import nl.avisi.anowalke.TranslateConnector
+import nl.avisi.anowalke.VertaalService
 import nl.avisi.anowalke.dto.ExpressionsDto
 import nl.avisi.anowalke.services.FilterService
-import nl.avisi.anowalke.services.translation.MicrosoftVertaalService
 
 @RestController
 @RequestMapping("/")
 class RestController(
-    private val vertaalService: TranslateConnector,
+    private val vertaalService: VertaalService,
     private val filterService: FilterService
 ) {
 
