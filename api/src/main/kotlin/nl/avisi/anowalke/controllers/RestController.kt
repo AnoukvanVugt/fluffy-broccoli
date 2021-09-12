@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import mu.KotlinLogging
-import nl.avisi.anowalke.VertaalService
+import nl.avisi.anowalke.services.translation.VertaalService
 import nl.avisi.anowalke.dto.ExpressionsDto
 import nl.avisi.anowalke.services.FilterService
 

@@ -1,9 +1,8 @@
 package nl.avisi.anowalke.services.translation
 
 import com.google.gson.reflect.TypeToken
-import nl.avisi.anowalke.VertaalService
 import nl.avisi.anowalke.dto.ExpressionsDto
-import nl.avisi.anowalke.dto.Translations
+import nl.avisi.anowalke.dto.TranslationsDto
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.stereotype.Service
@@ -21,8 +20,8 @@ class MicrosoftVertaalService: VertaalService {
         try {
             log.info { "POST $api_url" }
             val response = post(api_url, expressions)
-            val typeReference = object : TypeToken<ArrayList<Translations?>?>() {}.type
-            val translations: List<Translations> = gson.fromJson(response.body, typeReference)
+            val typeReference = object : TypeToken<ArrayList<TranslationsDto?>?>() {}.type
+            val translations: List<TranslationsDto> = gson.fromJson(response.body, typeReference)
             return translations.map { it.translations.first().expression }
         } catch (e: HttpStatusCodeException) {
             log.error { "Received ${e.statusCode.name} for $api_url: ${e.responseBodyAsString}" }

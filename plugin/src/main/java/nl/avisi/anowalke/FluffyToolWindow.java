@@ -11,9 +11,13 @@ public class FluffyToolWindow {
     private JPanel content;
     private JButton scan;
     private JTextArea result;
+    private JRadioButton lavaFlowRadioButton;
 
     public FluffyToolWindow(FluffyListener listener) {
-        scan.addActionListener(e -> listener.scan(result));
+        lavaFlowRadioButton.addActionListener(e ->
+                listener.setAntipatternName(lavaFlowRadioButton.isSelected(), lavaFlowRadioButton.getText()));
+        scan.addActionListener(e ->
+                listener.checkAntipatternSelected(result, lavaFlowRadioButton.isSelected()));
     }
 
     public JPanel getContent() {
