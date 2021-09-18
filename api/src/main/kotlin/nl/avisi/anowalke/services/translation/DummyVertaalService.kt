@@ -1,6 +1,5 @@
 package nl.avisi.anowalke.services.translation
 
-import nl.avisi.anowalke.VertaalService
 import nl.avisi.anowalke.dto.ExpressionsDto
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.stereotype.Service

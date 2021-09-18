@@ -4,9 +4,8 @@ import com.intellij.openapi.diagnostic.Logger
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.util.collectDescendantsOfType
-import nl.avisi.anowalke.toolWindow.FluffyListener
 
-class PsiService(fluffyListener: FluffyListener) {
+class PsiService {
 
     private val log = Logger.getInstance(this::class.java.name)
 

@@ -1,4 +1,4 @@
-package nl.avisi.anowalke
+package nl.avisi.anowalke.services.translation
 
 import com.google.gson.Gson
 import mu.KLogger
